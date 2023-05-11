@@ -21,7 +21,7 @@ const CreatePlayerPage = () => {
     setForm(DEFAULT_FORM);
   };
   return (
-    <Container className="h-100 w-50 d-flex flex-column justify-content-center">
+    <Container className="h-100 w-50 d-flex flex-column my-5">
       <Row>
         <Form onSubmit={createPlayer}>
           <Form.Group className="mb-3" controlId="formName">

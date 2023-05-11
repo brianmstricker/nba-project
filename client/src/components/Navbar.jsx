@@ -1,29 +1,34 @@
-import { Container, Nav, Navbar, Row } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { FantasyTeamContext } from "../main";
 import { useContext } from "react";
 
 const NavBar = () => {
   const [fantasyTeam] = useContext(FantasyTeamContext);
   return (
-    <Navbar variant="dark" bg="dark" expand="lg">
-      <Container className="mx-auto">
-        <Row>
+    <div>
+      <Navbar
+        variant="dark"
+        bg="dark"
+        expand="lg"
+        className="w-100 px-5 d-flex flex-row justify-content-between"
+      >
+        <div>
           <Navbar.Brand style={{ fontSize: "2rem" }} href="/">
             Fantasy Basketball
           </Navbar.Brand>
-        </Row>
-        <Row>
+        </div>
+        <div className="d-flex flew-row gap-4">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="d-flex flex-row align-items-center">
+            <Nav className="d-flex flex-row align-items-center gap-3">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/create-player">Create Player</Nav.Link>
-              <div className="text-danger">Cart {fantasyTeam.length}</div>
+              <div className="text-danger">Players: {fantasyTeam.length}</div>
             </Nav>
           </Navbar.Collapse>
-        </Row>
-      </Container>
-    </Navbar>
+        </div>
+      </Navbar>
+    </div>
   );
 };
 
