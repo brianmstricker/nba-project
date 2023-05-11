@@ -11,7 +11,10 @@ app.use(cors());
 const {
   createPlayerController,
 } = require("./controllers/createPlayerController");
+const { getPlayersController } = require("./controllers/getPlayersController");
+
 app.post("/players", createPlayerController);
+app.get("/players", getPlayersController);
 
 app.use((req, res) => {
   res.statusCode = 200;

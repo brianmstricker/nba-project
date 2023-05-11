@@ -10,7 +10,7 @@ const DEFAULT_FORM = {
   position: "",
   number: 0,
 };
-const CreatePlayer = () => {
+const CreatePlayerPage = () => {
   const [form, setForm] = useState(DEFAULT_FORM);
   const updateFormValue = (key) => (e) => {
     setForm({ ...form, [key]: e.currentTarget.value });
@@ -56,4 +56,4 @@ const CreatePlayer = () => {
     </Container>
   );
 };
-export default CreatePlayer;
+export default CreatePlayerPage;
