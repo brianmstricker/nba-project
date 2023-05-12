@@ -1,4 +1,5 @@
 import { Nav, Navbar } from "react-bootstrap";
+import useFantasyTeamStore from "../store/fantasyTeam";
 
 const HeaderNavigation = () => {
   return (
@@ -19,7 +20,11 @@ const HeaderNavigation = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="d-flex flex-row align-items-center gap-3">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/create-player">Create Player</Nav.Link>
+              <Nav.Link href="/create-player">Add Player Entry</Nav.Link>
+              <Nav.Link href="/fantasy-team">
+                Fantasy Team | Count:{" "}
+                {useFantasyTeamStore((state) => state.fantasyTeam.length)}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </div>

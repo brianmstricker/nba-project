@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Card, Container, Row } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
 import axios from "axios";
+import useFantasyTeamStore from "../store/fantasyTeam";
 
 const Homepage = () => {
   const [players, setPlayers] = useState([]);
   const [searchPlayer, setSearchPlayer] = useState("");
+  const addPlayerToFantasyTeam = useFantasyTeamStore(
+    (state) => state.addPlayer
+  );
+  const removePlayerFromFantasyTeam = useFantasyTeamStore(
+    (state) => state.removePlayer
+  );
   useEffect(() => {
     const fetchPlayers = async () => {
       const { data: playersData } = await axios.get(
@@ -30,7 +37,8 @@ const Homepage = () => {
       <Container>
         <Row>
           <input
-            className="form-control mt-4"
+            className="form-control mt-4 mx-auto"
+            style={{ width: "50%", minWidth: "200px" }}
             placeholder="Search Player By Name"
             type="text"
             value={searchPlayer}
@@ -38,12 +46,12 @@ const Homepage = () => {
           />
         </Row>
       </Container>
-      <Container className="py-5">
-        <Row>
+      <Container>
+        <Row className="justify-content-center">
           {getFilteredPlayers().map((player) => (
             <Card
-              className="d-inline-block my-2 mx-2"
-              style={{ width: "16rem" }}
+              className="d-inline-block my-2 shadow"
+              style={{ width: "16rem", margin: "0 1rem" }}
               key={player._id}
             >
               <Card.Img
@@ -56,6 +64,24 @@ const Homepage = () => {
                   {player.position && player.position.toUpperCase()} - #
                   {player.number}
                 </Card.Text>
+                <div className="d-flex flex-row gap-2">
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      addPlayerToFantasyTeam(player);
+                    }}
+                  >
+                    Add to Team
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      removePlayerFromFantasyTeam(player);
+                    }}
+                  >
+                    Remove from Team
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           ))}

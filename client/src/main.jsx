@@ -6,6 +6,7 @@ import HeaderNavigation from "./components/HeaderNavigation.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
+import FantasyTeamPage from "./pages/FantasyTeamPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,8 @@ const router = createBrowserRouter([
     element: <CreatePlayerPage />,
   },
   {
-    path: "*",
-    element: <ErrorPage />,
+    path: "/fantasy-team",
+    element: <FantasyTeamPage />,
   },
 ]);
 
