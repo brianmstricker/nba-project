@@ -37,7 +37,7 @@ const Homepage = () => {
       <Container>
         <Row>
           <input
-            className="form-control mt-4 mx-auto"
+            className="form-control mt-4 mx-auto mb-3"
             style={{ width: "50%", minWidth: "200px" }}
             placeholder="Search Player By Name"
             type="text"

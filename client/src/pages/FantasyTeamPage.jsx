@@ -1,4 +1,40 @@
+import { Button } from "react-bootstrap";
+import useFantasyTeamStore from "../store/fantasyTeam";
+
 const FantasyTeamPage = () => {
-  return <div>FantasyTeamPage</div>;
+  const fantasyTeam = useFantasyTeamStore((state) => state.fantasyTeam);
+  const clearFantasyTeam = useFantasyTeamStore(
+    (state) => state.clearFantasyTeam
+  );
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-12">
+          <h1 className="text-center my-4">Fantasy Team</h1>
+          <div className="row">
+            <div className="d-flex flex-row align-items-center justify-content-center mb-4">
+              <Button
+                style={{ width: "150px" }}
+                onClick={() => clearFantasyTeam()}
+              >
+                Clear Team
+              </Button>
+            </div>
+          </div>
+          <div className="row">
+            {fantasyTeam.map((player) => (
+              <div key={player._id} className="col-md-3">
+                <div className="card m-3">
+                  <div className="card-body">
+                    <h5 className="card-title">{player.name}</h5>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default FantasyTeamPage;
