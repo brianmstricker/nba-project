@@ -1,9 +1,6 @@
 import { Nav, Navbar } from "react-bootstrap";
-import { FantasyTeamContext } from "../main";
-import { useContext } from "react";
 
-const NavBar = () => {
-  const [fantasyTeam] = useContext(FantasyTeamContext);
+const HeaderNavigation = () => {
   return (
     <div>
       <Navbar
@@ -23,7 +20,6 @@ const NavBar = () => {
             <Nav className="d-flex flex-row align-items-center gap-3">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/create-player">Create Player</Nav.Link>
-              <div className="text-danger">Players: {fantasyTeam.length}</div>
             </Nav>
           </Navbar.Collapse>
         </div>
@@ -32,4 +28,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default HeaderNavigation;
