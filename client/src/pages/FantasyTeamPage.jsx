@@ -6,6 +6,9 @@ const FantasyTeamPage = () => {
   const clearFantasyTeam = useFantasyTeamStore(
     (state) => state.clearFantasyTeam
   );
+  const removePlayerFromFantasyTeam = useFantasyTeamStore(
+    (state) => state.removePlayer
+  );
   return (
     <div className="container">
       <div className="row">
@@ -15,6 +18,7 @@ const FantasyTeamPage = () => {
             <div className="d-flex flex-row align-items-center justify-content-center mb-4">
               <Button
                 style={{ width: "150px" }}
+                disabled={fantasyTeam.length === 0}
                 onClick={() => clearFantasyTeam()}
               >
                 Clear Team
@@ -26,7 +30,15 @@ const FantasyTeamPage = () => {
               <div key={player._id} className="col-md-3">
                 <div className="card m-3">
                   <div className="card-body">
-                    <h5 className="card-title">{player.name}</h5>
+                    <h5 className="card-title mb-4">{player.name}</h5>
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        removePlayerFromFantasyTeam(player);
+                      }}
+                    >
+                      Remove
+                    </Button>
                   </div>
                 </div>
               </div>

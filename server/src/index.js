@@ -12,9 +12,11 @@ const {
   createPlayerController,
 } = require("./controllers/createPlayerController");
 const { getPlayersController } = require("./controllers/getPlayersController");
+const { registerController } = require("./controllers/registerController");
 
 app.post("/players", createPlayerController);
 app.get("/players", getPlayersController);
+app.post("/register", registerController);
 
 app.use((req, res) => {
   res.statusCode = 200;

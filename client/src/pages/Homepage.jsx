@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Container,
+  Row,
+  Toast,
+  ToastContainer,
+} from "react-bootstrap";
 import axios from "axios";
 import useFantasyTeamStore from "../store/fantasyTeam";
 
 const Homepage = () => {
   const [players, setPlayers] = useState([]);
   const [searchPlayer, setSearchPlayer] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const fantasyTeam = useFantasyTeamStore((state) => state.fantasyTeam);
   const addPlayerToFantasyTeam = useFantasyTeamStore(
     (state) => state.addPlayer
   );
@@ -34,6 +43,23 @@ const Homepage = () => {
   }
   return (
     <>
+      <ToastContainer
+        className="p-3 position-fixed"
+        position="top-end"
+        style={{ zIndex: 2, marginTop: "5rem" }}
+      >
+        <Toast
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={3000}
+          autohide
+        >
+          <Toast.Header closeButton={false}>
+            <strong className="me-auto">Success ✅</strong>
+          </Toast.Header>
+          <Toast.Body className="text-center">Player added to team</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <Container>
         <Row>
           <input
@@ -65,22 +91,27 @@ const Homepage = () => {
                   {player.number}
                 </Card.Text>
                 <div className="d-flex flex-row gap-2">
-                  <Button
-                    variant="primary"
-                    onClick={() => {
-                      addPlayerToFantasyTeam(player);
-                    }}
-                  >
-                    Add to Team
-                  </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      removePlayerFromFantasyTeam(player);
-                    }}
-                  >
-                    Remove from Team
-                  </Button>
+                  {!fantasyTeam.find((p) => p._id === player._id) && (
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        addPlayerToFantasyTeam(player);
+                        setShowToast(true);
+                      }}
+                    >
+                      Add to Team
+                    </Button>
+                  )}
+                  {fantasyTeam.find((p) => p._id === player._id) && (
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        removePlayerFromFantasyTeam(player);
+                      }}
+                    >
+                      Remove from Team
+                    </Button>
+                  )}
                 </div>
               </Card.Body>
             </Card>
