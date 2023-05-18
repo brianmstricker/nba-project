@@ -9,6 +9,7 @@ import Homepage from "./pages/Homepage.jsx";
 import FantasyTeamPage from "./pages/FantasyTeamPage.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import Logout from "./pages/Logout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
   },
 ]);
 
