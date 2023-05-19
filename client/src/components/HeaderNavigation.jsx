@@ -1,4 +1,4 @@
-import { Nav, Navbar } from "react-bootstrap";
+import { Image, Nav, Navbar } from "react-bootstrap";
 import useFantasyTeamStore from "../store/fantasyTeam";
 import { useState, useEffect } from "react";
 import useUserStore from "../store/userStore";
@@ -22,6 +22,10 @@ const HeaderNavigation = () => {
       >
         <div>
           <Navbar.Brand style={{ fontSize: "2rem" }} href="/">
+            <Image
+              style={{ width: "50px", height: "50px" }}
+              src="../../images/Logo.svg"
+            ></Image>
             Fantasy Basketball
           </Navbar.Brand>
           {user && <p className="text-white text">{username}</p>}
