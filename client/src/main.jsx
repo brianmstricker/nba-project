@@ -6,10 +6,10 @@ import HeaderNavigation from "./components/HeaderNavigation.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
-import FantasyTeamPage from "./pages/FantasyTeamPage.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Logout from "./pages/Logout.jsx";
+import { FantasyTeamRoute } from "./routes/FantasyTeamRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/fantasy-team",
-    element: <FantasyTeamPage />,
+    element: <FantasyTeamRoute />,
   },
   {
     path: "/register",
