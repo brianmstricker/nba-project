@@ -17,6 +17,12 @@ const Homepage = () => {
   const [showToast, setShowToast] = useState(false);
   const fantasyTeam = useFantasyTeamStore((state) => state.fantasyTeam);
   const token = useUserStore((state) => state.token);
+  const user = useUserStore((state) => state.user);
+  useEffect(() => {
+    if (token) {
+      user;
+    }
+  }, [token, user]);
   const addPlayerToFantasyTeam = useFantasyTeamStore(
     (state) => state.addPlayer
   );
@@ -75,7 +81,10 @@ const Homepage = () => {
         </Row>
       </Container>
       <Container>
-        <Row className="justify-content-center">
+        {!user && (
+          <Row className="text-muted">Sign in to add players to your team!</Row>
+        )}
+        <Row className="justify-content-start">
           {getFilteredPlayers().map((player) => (
             <Card
               className="d-inline-block my-2 shadow"
@@ -92,7 +101,7 @@ const Homepage = () => {
                   {player.position && player.position.toUpperCase()} - #
                   {player.number}
                 </Card.Text>
-                {token && (
+                {user && (
                   <div className="d-flex flex-row gap-2">
                     {!fantasyTeam.find((p) => p._id === player._id) && (
                       <Button
